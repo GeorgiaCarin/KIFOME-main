@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import { Text } from 'react-native'
 import { View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { ComentsShow } from './src/screens/ComentsShow'
 // const navigator = createStackNavigator ({
 //   Search: SearchScreen,
 //   ResultsShow: ResultsShowScreen
@@ -69,6 +70,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="ResultsShow" component={ResultTap} options={{ headerShown: false }} />
+        <Stack.Screen name="ComentsShow" component={ComentsShow} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
