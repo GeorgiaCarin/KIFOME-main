@@ -24,12 +24,7 @@ const ResultsList = ({title,results}) => {
          
                     
                     navigation.navigate("ResultsShow", {
-                    
-                   
-      
                             itemId: item.id,
-                        
-                        
                     })
                     
                     }

@@ -1,13 +1,15 @@
-import { useRoute } from "@react-navigation/native"
-import { View, Text, FlatList, TouchableOpacity } from "react-native"
+import { useNavigation, useRoute } from "@react-navigation/native"
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import React, {useState,useEffect} from "react"
 import yelp from "../api/yelp"
+import ComentsDetail from "../components/ComentsDetsil"
 
 
 export default ComentsScreen = () => {
     const [coments, setComments] = useState([])
     const route = useRoute()
+    const navigation = useNavigation()
     console.log('Teste dos comentarios', route.params)
     const {itemId} = route.params
 
@@ -16,8 +18,8 @@ export default ComentsScreen = () => {
         setComments(commentsResponse.data);
         console.log(commentsResponse.data.reviews)
         
-      };
-      useEffect(()=> {
+    };
+    useEffect(()=> {
 
         getComments(itemId)
 
@@ -25,31 +27,43 @@ export default ComentsScreen = () => {
     
     return (
         <SafeAreaView>
-         <FlatList
-        
-        showsHorizontalScrollIndicator={false}
-        data={coments.reviews}
-        keyExtractor = {(coments)=> coments.id}
-        renderItem = {({item})=> {
+            <Text style={styles.title}>Comentários</Text>
+            <FlatList
             
-            return (
-                <TouchableOpacity onPress={()=> console.log('comentarios')}>
-                    
-                    <View>
-                        <Text>
-                            {item.user.name}
-                        </Text>
-                        <Text>
-                            {item.text}
-                        </Text>
-
-                    </View>
-                </TouchableOpacity>
+                showsHorizontalScrollIndicator={false}
+                data={coments.reviews}
+                keyExtractor = {(coments)=> coments.id}
+                renderItem = {({item})=> {
                 
-            )
-        
-        }}
-       />
+                return (
+                    <TouchableOpacity  onPress={()=> {
+         
+                    
+                        navigation.navigate("ComentDetail", {
+                                itemId: item.id,
+                        })
+                    }}
+                        >
+                        
+                        <ComentsDetail result={item} />
+                    </TouchableOpacity>
+                    
+                )
+            
+            }}
+            />
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    title: {
+        fontSize:24,
+        fontWeight: "bold",
+        color:'#2C7D09',
+        textAlign: 'center',
+        marginBottom: 2
+
+
+    },
+})

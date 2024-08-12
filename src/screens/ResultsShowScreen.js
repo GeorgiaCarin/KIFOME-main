@@ -7,7 +7,7 @@ import yelp from '../api/yelp';
 
 const ResultsShowScreen = () => {
   const [result, setResult] = useState(null);
-  const [comments, setComments] = useState([]);
+
   const route = useRoute();
   const navigation = useNavigation();
   console.log('parametros recebidos', route.params)
@@ -18,14 +18,11 @@ const ResultsShowScreen = () => {
     setResult(response.data);
   };
 
-  const getComments = async () => {
-    const commentsResponse = await yelp.get(`/${itemId}/reviews`);
-    setComments(commentsResponse.data.reviews);
-  };
+
 
   useEffect(() => {
     getResult(itemId);
-    getComments(itemId);
+
   }, [itemId]);
 
   if (!result) {
