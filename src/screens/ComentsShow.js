@@ -1,42 +1,43 @@
-import { useRoute } from "@react-navigation/native"
+import { Link, useRoute } from "@react-navigation/native"
 import { Image, StyleSheet, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { DateFormat } from "../components/DateFormat"
-
+import { FontAwesome } from '@expo/vector-icons';
+import InsetShadow from 'react-native-inset-shadow'
+import { BackButton } from "../components/BackButton";
+import { UrlButton } from "../components/UrlButton";
 export const ComentsShow = () => {
     const route = useRoute()
     const {item} = route.params
-    console.log(item)
+
     return (
         <SafeAreaView>
-            <View style={{alignItems:'center'}}>
-                <Image style={styles.image} source={{uri: item.user.image_url}}/>
-                <Text style={styles.title}>{item.user.name}</Text>
+            <View style = {styles.card}>
+                <BackButton path='Reviews' />
+                <View style={{alignItems: 'center', paddingTop: 40}} >
+                    <Image style={styles.image} source={{uri: item.user.image_url}}/>
+                    <View style={{flexDirection: 'row', justifyContent: 'center',alignContent: 'center'}}>
+                        <Text style={styles.title}>{item.user.name}</Text>
+                        <FontAwesome name="star" size={24} color='#FFCF26' />
+                        <Text style={styles.title}>{item.rating}</Text>
+                    </View>
+                </View>
+     
+                    <Text style={styles.text}>{item.text}</Text>
 
+                    <DateFormat style={styles.date} date={item.time_created} />
+        
+    
             </View>
-            <Text style={styles.text}>{item.text}</Text>
-            <DateFormat date={item.time_created} />
+            <UrlButton url={item.url}>Ir para comentário</UrlButton>
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     card: {
-    
-        backgroundColor:'#ffffff',
-        borderRadius: 4,
-        alignItems: 'baseline',
-        paddingVertical: 8,
-        paddingHorizontal: 8,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity:  .2,
-
-        shadowRadius: 1.0,
-        elevation: 2,
+        padding: 8,
+        
 
 
     },
@@ -61,8 +62,17 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize:16,
-        textAlign: 'justify'
+        textAlign: 'justify', 
+        padding: 20,
+        backgroundColor: "#FFFFFF",
+        borderRadius: 20,
+        
+        
 
     },
+    date:{
+        color: '#ffffff'
+        
+    }
 
 })

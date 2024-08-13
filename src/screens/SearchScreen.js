@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { View, Text, StyleSheet, ScrollView, Image, FlatList, TouchableOpacity} from "react-native";
 import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
@@ -19,6 +19,9 @@ const SearchScreen = ({}) =>{
             return result.price === price
         })
     }
+    useEffect(()=> {
+        searchApi(term)
+    },[term])
 
     const data = [
         { id: '1', title: 'Pizza' , icon: "pizza-slice"},
@@ -31,7 +34,7 @@ const SearchScreen = ({}) =>{
       const renderItem = ({ item }) => (
         <TouchableOpacity onPress={() => {
             setTerm(item.title)
-            searchApi(term)
+      
             }}>
             <View style={styles.icons}>
             <FontAwesome5 name={item.icon} color="white" size={30}/>
@@ -49,8 +52,10 @@ const SearchScreen = ({}) =>{
         <SearchBar
  
             term={term} 
-            onTermChange={newTerm => setTerm(newTerm)}
-            onTermSubmit={()=>searchApi(term)}
+            onTermChange={(newTerm) => { 
+                setTerm(newTerm) 
+               }}
+            
         />
         {erro ? <Text> {erro} </Text> : null}
 

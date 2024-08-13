@@ -1,4 +1,4 @@
-import { Text, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 
 export const DateFormat = ({date}) => {
 
@@ -12,7 +12,14 @@ export const DateFormat = ({date}) => {
     
     return (
         <View>
-            <Text>Criado em {formattedDate} às {formattedTime}</Text>
+            <Text style={styles.date} >Criado em {formattedDate} às {formattedTime}</Text>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    date: {
+        paddingTop: 5,
+        color: '#B2B2B2'
+    }
+})

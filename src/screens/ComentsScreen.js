@@ -10,14 +10,11 @@ export default ComentsScreen = () => {
     const [coments, setComments] = useState([])
     const route = useRoute()
     const navigation = useNavigation()
-    console.log('Teste dos comentarios', route.params)
     const {itemId} = route.params
 
     const getComments = async () => {
         const commentsResponse = await yelp.get(`/${itemId}/reviews`);
-        setComments(commentsResponse.data);
-        console.log(commentsResponse.data.reviews)
-        
+        setComments(commentsResponse.data);        
     };
     useEffect(()=> {
 
@@ -26,7 +23,7 @@ export default ComentsScreen = () => {
     },[itemId])
     
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{paddingTop:40}}>
             <Text style={styles.title}>Comentários</Text>
             <FlatList
             
@@ -41,7 +38,7 @@ export default ComentsScreen = () => {
                         <View style={[styles.card,styles.shadowProp]}>
                             
                             <Text style={styles.title}>{item.user.name}</Text>
-                            <Text style={styles.text}> {item.text}</Text>
+                            <Text  style={styles.text}> {item.text.slice(0,70)}...</Text>
                         </View>
                         
                     </View>
@@ -86,15 +83,18 @@ const styles = StyleSheet.create({
         paddingBottom: 4
     },
     title: {
+    
         fontSize:20,
         fontWeight: "bold",
         color:'#2C7D09',
+        textAlign: 'center'
 
 
     },
     text: {
         fontSize:16,
-        textAlign: 'justify'
+        textAlign: 'justify',
+        
   
 
 

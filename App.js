@@ -9,17 +9,16 @@ import { getExpoGoProjectConfig } from 'expo'
 import { NavigationContainer } from '@react-navigation/native'
 import { useEffect, useState } from 'react'
 import { Text } from 'react-native'
-import { View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import ComentsDetail from './src/components/ComentsDetsil'
-import ComentsDetailScreen from './src/screens/ComentsDetailScreen'
-import { ComentsShow } from './src/screens/ComentsShow'
 
+import { SafeAreaView } from 'react-native-safe-area-context'
+
+import { ComentsShow } from './src/screens/ComentsShow'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 const Tab = createBottomTabNavigator()
 function ResultTap({route}) {
   const [load, setLoad] = useState(false)
   const { itemId } = route.params || {}
-  console.log('Parâmetros recebidos no ResultTap:', route.params);
+
   useEffect(() => {
     if (itemId) {
       setLoad(true);
@@ -34,7 +33,26 @@ function ResultTap({route}) {
   }
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+        
+        if (route.name === 'Infos') {
+          iconName = 
+             'information-circle-outline'
+          
+        } else if (route.name === 'Reviews') {
+          iconName = 'chatbox-outline' 
+        }
+
+        // You can return any component that you like here!
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: '#2C7D09',
+      tabBarInactiveTintColor: 'gray',
+    })}
+    >
       <Tab.Screen
         name="Infos"
         component={ResultsShowScreen}

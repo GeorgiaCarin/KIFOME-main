@@ -4,13 +4,15 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
 import yelp from '../api/yelp';
+import { BackButton } from '../components/BackButton';
+import { UrlButton } from '../components/UrlButton';
 
 const ResultsShowScreen = () => {
   const [result, setResult] = useState(null);
 
   const route = useRoute();
   const navigation = useNavigation();
-  console.log('parametros recebidos', route.params)
+
   const {itemId} = route.params
 
   const getResult = async (itemId) => {
@@ -32,9 +34,7 @@ const ResultsShowScreen = () => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Search')}>
-          <FontAwesome name="chevron-left" style={styles.icon} />
-        </TouchableOpacity>
+        <BackButton path='Search' />
         <Image style={styles.image} source={{ uri: result.image_url }} />
       </View>
 
@@ -69,6 +69,7 @@ const ResultsShowScreen = () => {
           return <Image style={styles.images} source={{ uri: item }} />;
         }}
       />
+      <UrlButton url={result.url}>Ir para o site</UrlButton>
     </SafeAreaView>
   );
 };

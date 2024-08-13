@@ -1,12 +1,12 @@
 import react from "react";
 import { View, Text, StyleSheet, FlatList, Image } from "react-native";
-
+import  imgNotFound from '../Assets/imgNotFound.jpg'
 const ResultsDetail = ({result}) => {
     
     return <View style={styles.container}>
         <View style={[styles.card,styles.shadowProp]}>
             {result.image_url =="" 
-            ? <Text>oi</Text> 
+            ? <Image style={styles.image} source={imgNotFound}/>
             : <Image style={styles.image} source={{uri: result.image_url}}/>}
             
             <Text style={styles.title}>{result.name}</Text>
