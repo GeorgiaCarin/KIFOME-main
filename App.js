@@ -11,23 +11,9 @@ import { useEffect, useState } from 'react'
 import { Text } from 'react-native'
 import { View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-<<<<<<< HEAD
 import ComentsDetail from './src/components/ComentsDetsil'
 import ComentsDetailScreen from './src/screens/ComentsDetailScreen'
-=======
 import { ComentsShow } from './src/screens/ComentsShow'
-// const navigator = createStackNavigator ({
-//   Search: SearchScreen,
-//   ResultsShow: ResultsShowScreen
-// }, {
-//   initialRouteName:'Search',
-//   defaultNavigationOptions: {
-//     title: 'Business Search'
-//   }
-// })
-
-// export default createAppContainer(navigator)
->>>>>>> 6d668b8f311b5bd462762ad172d29e2d0fdaefe0
 
 const Tab = createBottomTabNavigator()
 function ResultTap({route}) {
@@ -75,11 +61,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="ResultsShow" component={ResultTap} options={{ headerShown: false }} />
-<<<<<<< HEAD
-        <Stack.Screen name="ComentDetail" component={ComentsDetailScreen} options={{ headerShown: false }} />
-=======
         <Stack.Screen name="ComentsShow" component={ComentsShow} options={{ headerShown: false }} />
->>>>>>> 6d668b8f311b5bd462762ad172d29e2d0fdaefe0
       </Stack.Navigator>
     </NavigationContainer>
   );

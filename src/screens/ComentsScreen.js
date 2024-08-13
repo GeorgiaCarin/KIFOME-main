@@ -30,12 +30,10 @@ export default ComentsScreen = () => {
             <Text style={styles.title}>Comentários</Text>
             <FlatList
             
-<<<<<<< HEAD
                 showsHorizontalScrollIndicator={false}
                 data={coments.reviews}
                 keyExtractor = {(coments)=> coments.id}
                 renderItem = {({item})=> {
-=======
             return (
                 <TouchableOpacity onPress={()=> navigation.navigate("ComentsShow", {item})}>
                     
@@ -47,44 +45,15 @@ export default ComentsScreen = () => {
                         </View>
                         
                     </View>
-
-
                 </TouchableOpacity>
->>>>>>> 6d668b8f311b5bd462762ad172d29e2d0fdaefe0
-                
-                return (
-                    <TouchableOpacity  onPress={()=> {
-         
-                    
-                        navigation.navigate("ComentDetail", {
-                                itemId: item.id,
-                        })
-                    }}
-                        >
-                        
-                        <ComentsDetail result={item} />
-                    </TouchableOpacity>
-                    
-                )
-            
-            }}
+
+            )}} 
             />
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
-    title: {
-        fontSize:24,
-        fontWeight: "bold",
-        color:'#2C7D09',
-        textAlign: 'center',
-        marginBottom: 2
-
-
-    },
-=======
     card: {
     
         backgroundColor:'#ffffff',
@@ -131,5 +100,4 @@ const styles = StyleSheet.create({
 
     },
 
->>>>>>> 6d668b8f311b5bd462762ad172d29e2d0fdaefe0
 })
