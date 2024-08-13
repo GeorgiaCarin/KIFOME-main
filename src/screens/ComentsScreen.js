@@ -30,10 +30,27 @@ export default ComentsScreen = () => {
             <Text style={styles.title}>Comentários</Text>
             <FlatList
             
+<<<<<<< HEAD
                 showsHorizontalScrollIndicator={false}
                 data={coments.reviews}
                 keyExtractor = {(coments)=> coments.id}
                 renderItem = {({item})=> {
+=======
+            return (
+                <TouchableOpacity onPress={()=> navigation.navigate("ComentsShow", {item})}>
+                    
+                    <View style={styles.container}>
+                        <View style={[styles.card,styles.shadowProp]}>
+                            
+                            <Text style={styles.title}>{item.user.name}</Text>
+                            <Text style={styles.text}> {item.text}</Text>
+                        </View>
+                        
+                    </View>
+
+
+                </TouchableOpacity>
+>>>>>>> 6d668b8f311b5bd462762ad172d29e2d0fdaefe0
                 
                 return (
                     <TouchableOpacity  onPress={()=> {
@@ -57,6 +74,7 @@ export default ComentsScreen = () => {
 }
 
 const styles = StyleSheet.create({
+<<<<<<< HEAD
     title: {
         fontSize:24,
         fontWeight: "bold",
@@ -66,4 +84,52 @@ const styles = StyleSheet.create({
 
 
     },
+=======
+    card: {
+    
+        backgroundColor:'#ffffff',
+        borderRadius: 4,
+        alignItems: 'baseline',
+        paddingVertical: 8,
+        paddingHorizontal: 8,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 4,
+          },
+          shadowOpacity:  .2,
+
+          shadowRadius: 1.0,
+          elevation: 2,
+          
+
+    },
+    container:{
+        
+        margin: 8
+    },
+    image: {
+        width:270,
+        height: 170,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 4,
+        marginBottom: 2,
+        paddingBottom: 4
+    },
+    title: {
+        fontSize:20,
+        fontWeight: "bold",
+        color:'#2C7D09',
+
+
+    },
+    text: {
+        fontSize:16,
+        textAlign: 'justify'
+  
+
+
+    },
+
+>>>>>>> 6d668b8f311b5bd462762ad172d29e2d0fdaefe0
 })
